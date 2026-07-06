@@ -26,11 +26,6 @@ def analyze_star_fork_correlation():
     df = pd.read_csv(CSV_PATH)
     stars = df['Stars']
     forks = df['Forks']
-    # fig, ax = plt.subplots()
-    # ax.scatter(stars, forks, alpha=0.7, s=50)
-    # ax.set_xlabel('Number of Stars')
-    # ax.set_ylabel('Number of Forks')
-    # ax.set_title('Correlation between Stars and Forks')
     plt.figure(figsize=(10, 6))
     sns.regplot(
         x=stars,
@@ -47,3 +42,19 @@ def analyze_star_fork_correlation():
     plt.savefig(r'.\graphs\star_fork_correlation.png')
     correlation = stars.corr(forks)
     print(f"Correlation between Stars and Forks: {correlation:.2f}")
+
+def analyze_repository_creation_year():
+    df = pd.read_csv(CSV_PATH)
+    df['created_at'] = pd.to_datetime(df['Created'], errors='coerce')
+    df['created_year'] = df['created_at'].dt.year
+    year_counts = df['created_year'].value_counts().sort_index()
+    
+    plt.figure(figsize=(10, 6))
+    year_counts.plot(kind='bar')
+    plt.title('Number of Popular Python Repositories by Creation Year')
+    plt.xlabel('Creation Year')
+    plt.ylabel('Number of Repositories')
+    plt.xticks(rotation=45)
+    plt.bar_label(plt.gca().containers[0], label_type='edge', fontsize=8)
+    plt.tight_layout()
+    plt.savefig(r'.\graphs\repository_creation_year.png')
