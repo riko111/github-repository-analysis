@@ -56,5 +56,28 @@ def analyze_repository_creation_year():
     plt.ylabel('Number of Repositories')
     plt.xticks(rotation=45)
     plt.bar_label(plt.gca().containers[0], label_type='edge', fontsize=8)
+    plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(r'.\graphs\repository_creation_year.png')
+
+
+def analyze_star_distribution():
+    df = pd.read_csv(CSV_PATH)
+    plt.figure(figsize=(10, 6))
+    sns.histplot(df['Stars'], bins=15, kde=True)
+    plt.title('Distribution of Stars in Popular Python Repositories')
+    plt.xlabel('Number of Stars')
+    plt.ylabel('Frequency')
+    plt.grid(axis='y')
+    plt.tight_layout()
+    plt.savefig(r'.\graphs\star_distribution.png')
+
+    
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x=df['Stars'])
+    plt.title('Boxplot of Stars in Popular Python Repositories')
+    plt.xlabel('Number of Stars')
+    plt.grid(axis='x')
+    plt.yticks([])
+    plt.tight_layout()
+    plt.savefig(r'.\graphs\star_boxplot.png')
