@@ -1,10 +1,10 @@
 from fetch_data import fetch_python_repositories
-from analyze_data import plot_top10_stars
+from analyze_data import plot_top10_stars, analyze_star_fork_correlation
 
 def main():
     df = fetch_python_repositories()
-    print(f"{len(df)}件のリポジトリを取得しました。")
     plot_top10_stars()
+    analyze_star_fork_correlation()
 
 if __name__ == "__main__":
     main()
