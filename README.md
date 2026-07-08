@@ -21,3 +21,6 @@
 
 - Top 10 repositories by stars
 - Correlation between stars and forks
+- Repositories by Creation Year
+- Distribution of Stars
+- Boxplot of Stars
