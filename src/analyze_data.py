@@ -81,7 +81,7 @@ def analyze_star_distribution():
     plt.savefig(GRAPH_PATH / "star_distribution.png")
     plt.close()
 
-    
+    print(df['Stars'].describe())
     plt.figure(figsize=(10, 6))
     sns.boxplot(x=df['Stars'])
     plt.title('Boxplot of Stars in Popular Python Repositories')
